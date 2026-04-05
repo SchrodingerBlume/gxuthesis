@@ -63,4 +63,4 @@
 
 本模板以 [LaTeX Project Public License 1.3c](https://www.latex-project.org/lppl/) 发布。
 
-字体文件及广西大学题字图片不在此许可证的覆盖范围内，版权归各自权利人所有。
+广西大学题字图片不在此许可证的覆盖范围内，版权归各自权利人所有。
