@@ -44,7 +44,7 @@
 
 ## 关于本模板
 
-本模板在广西大学物理学院 2021 级硕士**王信哲（KingwithQueen）**开发的 [GXU-Masters-and-PhD-Thesis-Templates](https://github.com/KingwithQueen/GXU-Masters-and-PhD-Thesis-Templates) 基础上进行了大量修改与重构。若原作者认为本模板侵犯了其权益，请联系作者，将立即处理。
+本模板在广西大学物理学院 2021 级硕士王信哲（KingwithQueen）开发的 [GXU-Masters-and-PhD-Thesis-Templates](https://github.com/KingwithQueen/GXU-Masters-and-PhD-Thesis-Templates) 基础上进行了大量修改与重构。若原作者认为本模板侵犯了其权益，请联系作者，将立即处理。
 
 模板中使用的广西大学题字图片提取自广西大学官方发布的 Word 学位论文模板，仅供本模板排版使用，**严禁用于其他任何用途**。作者无意侵犯广西大学的任何权益，若校方认为此使用方式不当，请联系作者处理。
 
@@ -56,7 +56,7 @@
 
 ## 联系方式
 
-- **邮箱**：请在 GitHub 个人主页查看
+- **邮箱**：junhaowu_hit@163.com/andrew.junhao.wu@gmail.com
 - **GitHub Issues**：[提交问题](https://github.com/SchrodingerBlume/gxuthesis/issues)
 
 ## 许可证
