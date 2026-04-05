@@ -1,0 +1,179 @@
+% !TeX program = xelatex
+% !TeX encoding = UTF-8
+% !BIB program = biber
+
+%% 广西大学硕博学位论文模板
+%% Schrodinger Blume 修改制作，符合 2026 年规范
+%% 欢迎闲鱼找「薛定谔之花_」下单
+%% 我的邮箱：junhaowu_hit@163.com
+
+%% 主文件仅用于修改信息、配置和添加章节
+%% 应尽可能保持简洁
+%% 编译应在此文件进行
+
+\documentclass{gxuthesis}
+% 若参考文献使用 GB/T 7714—2025 规范：
+% \documentclass[gb7714-2025]{gxuthesis}
+
+
+
+% —— 文献数据库 ——
+\addbibresource{参考文献/ref1.bib}
+\addbibresource{参考文献/ref2.bib}
+
+
+
+\begin{document}
+
+
+
+% 载入「封面、扉页、声明」定义
+\input{gxufrontmatter}
+
+
+
+% —— 配置基本信息 ——
+\renewcommand{\degree}{硕士} % 博士 / 硕士
+% \gxuprofessionaltrue % 默认「学术学位」，取消注释则切换到「专业学位」
+% ————————————————————————————————————————————
+% 如果「盲审」，则「启用」下面这行命令
+% 将不显示「广西大学图标」与「页眉」
+% \gxublindtrue
+% ————————————————————————————————————————————
+% 「留空/注释掉」则对应栏目完全「不显示」
+% 如果用「空格占位」则可以只显示「左侧文字」和「下划线」
+\renewcommand{\category}{（中图分类号）} % 分类号
+\renewcommand{\schoolcode}{} % 学校代码
+\renewcommand{\level}{   } % 密级
+% \renewcommand{\id}{2211399999} % 学号
+% ————————————————————————————————————————————
+% 「留空/注释掉」则对应栏目完全「不显示」
+% 如果用「空格占位」则可以只显示「左侧文字」和「下划线」
+\renewcommand{\thesisauthor}{张三} % 作者姓名
+\renewcommand{\supervisor}{李四} % 指导教师
+\renewcommand{\cosupervisor}{王五} % 合作导师
+\renewcommand{\major}{物理学} % 专业名称
+\renewcommand{\research}{量子通信} % 研究方向
+\renewcommand{\college}{物理科学与工程技术学院} % 所在学院
+% ————————————————————————————————————————————
+% 「留空/注释掉」则对应栏目完全「不显示」
+% 如果用「空格占位」则可以只显示「左侧文字」和「下划线」
+\renewcommand{\defensedate}{2025年6月1日} % 论文答辩日期
+\renewcommand{\degreedate}{2025年6月30日} % 学位授予日期
+\renewcommand{\defensechair}{   } % 答辩委员会主席
+% ————————————————————————————————————————————
+% 标题「换行」机制见模板给的示例（节 2.2）
+\renewcommand{\cntitle}{沙基太阳能界面蒸发器的构建及其\\ 光热蒸汽转换性能研究} % 中文标题
+% 如果中文标题中有「字母」的话，「书脊」的表现「可能不好」
+% \gxuspinedoublecoltrue % 书脊默认按「单列」排版，取消注释则按「双列」排版
+% \gxuspinefalse % 默认显示书脊，取消注释则不显示书脊
+
+\renewcommand{\entitle}{Research Title} % 英文标题，换行只能用 \\
+% ————————————————————————————————————————————
+% 年份和数字都要写阿拉伯数字
+\renewcommand{\pubyear}{2026} % 封面年份
+\renewcommand{\pubmonth}{6} % 封面月份
+% ————————————————————————————————————————————
+% 扉页中，「英文标题」与「信息表格」的间隙，默认 4em，按需修改
+% \renewcommand{\infotableskip}{4em}
+
+
+
+% —— 配置声明页信息 ——
+% \gxustatementfalse % 默认生成声明页，取消此行注释则不生成声明页
+% ————————————————————————————————————————————
+% 不保密（默认）：「不写」或「留空」
+% \renewcommand{\secretperiod}{}
+% 若保密则填写期限：
+\renewcommand{\secretperiod}{三}
+% ————————————————————————————————————————————
+\renewcommand{\statementauthor}{\includegraphics[height=2em]{签名/作者签名.png}}
+\renewcommand{\statementauthordate}{2026.06.01}
+% ————————————————————————————————————————————
+\renewcommand{\statementsupervisor}{\includegraphics[height=2em]{签名/导师签名.png}}
+\renewcommand{\statementsupervisordate}{2026.06.02}
+% ————————————————————————————————————————————
+\renewcommand{\statementphone}{13812345678}
+\renewcommand{\statementemail}{xxx@st.gxu.edu.cn}
+
+
+
+% —— 前置部分（封面 / 摘要 / 目录）——
+\makefrontmatter
+    {\cntitle}
+    {\entitle}
+    {论文内容/中文摘要}
+    {论文内容/英文摘要}
+% ————————————————————————————————————————————
+% — 辅助目录 — 不需要则注释/删掉相应命令
+\gxulistoffigures % 插图清单
+% ————————————————————————————————————————————
+% 附表清单
+\clearpage\gxulistoftables
+% ————————————————————————————————————————————
+% 缩略语清单
+\clearpage\gxulistofabbr
+\input{论文内容/缩略语清单}
+% ————————————————————————————————————————————
+% 符号清单
+\clearpage\gxulistofsymbols
+\input{论文内容/符号清单}
+% ————————————————————————————————————————————
+% 术语表
+\clearpage\gxulistofterms
+\input{论文内容/术语表}
+
+
+
+% —— 正文 ——
+\startmainmatter % 加载正文配置
+% \gxustretchwide % 行间距切换到 25 磅
+% \gxuafternamenarrrow % 标题文字与编号间距设置为半个汉字宽
+\input{论文内容/第1章}
+\input{论文内容/第2章}
+\input{论文内容/第3章}
+\input{论文内容/第4章}
+\input{论文内容/第5章}
+% \input{论文内容/第...章} % 按需添减
+
+
+
+% —— 参考文献 —— 毋动
+\clearpage
+\printbibliography
+\addcontentsline{toc}{section}{参考文献}
+
+
+
+% —— 附录 ——
+\pagebreak
+\begin{appendices}
+    \resetappendixcounters
+    \input{论文内容/附录A}
+    \input{论文内容/附录B}
+  % \input{论文内容/附录...} % 按需添减
+\end{appendices}
+
+
+
+% —— 索引 —— 不需要则注释/删掉
+\clearpage
+\gxuprintindex
+
+
+
+% —— 成果 ——
+\clearpage
+\section*{攻读学位期间取得成果情况}
+\addcontentsline{toc}{section}{攻读学位期间取得成果情况}
+\input{论文内容/成果}
+
+
+
+% —— 致谢 ——
+\clearpage
+\section*{致谢}
+\addcontentsline{toc}{section}{致谢}
+\fangsong % 致谢用仿宋字体，注释/删掉则使用宋体
+\input{论文内容/致谢}
+\end{document}

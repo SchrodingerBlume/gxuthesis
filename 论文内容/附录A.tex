@@ -1,0 +1,25 @@
+\section{索引的使用方法}
+
+使用 \verb|\index{}| 命令添加索引标记，格式为"拼音@文字"，拼音用于确定排序。
+
+索引标记的基本原则是：标注\textbf{读者可能需要快速定位的内容}。具体建议如下：
+
+\subsection{适合标注的内容}
+
+\begin{itemize}
+    \item \textbf{专业术语与核心概念}：在首次定义或解释处必须标注，后续重要论述处可酌情标注。例如：量子纠缠\index{liangzijiuchan@量子纠缠}是指……
+    \item \textbf{重要人名与机构名}：例如：广西大学\index{guangxidaxue@广西大学}于……
+    \item \textbf{物理量符号}：在首次出现定义处标注。例如：热扩散系数 $\alpha$\index{rekuosanxishu@热扩散系数}表示……
+    \item \textbf{方法与模型名称}：例如：最小二乘法\index{zuixiaoerchengfa@最小二乘法}……
+\end{itemize}
+
+\subsection{不适合标注的内容}
+
+\begin{itemize}
+    \item 目录、摘要、参考文献中的词条
+    \item 同一页中重复出现的词条（每页仅标注一次）
+    \item 过于通用的词汇（如"研究""方法""结果"等）
+    \item 图表题注中的词条
+\end{itemize}
+
+需要说明的是，学位论文通常不要求编制索引。若不需要此功能，注释或删除 \verb|\clearpage\gxuprintindex| 即可。

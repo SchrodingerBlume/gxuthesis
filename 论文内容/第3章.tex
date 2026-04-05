@@ -1,0 +1,20 @@
+\clearpage
+\section{数学符号与公式规范}\label{equation}
+
+本模板基于 \verb|unicode-math| 宏包处理数学排版，与传统 \verb|amsmath| 在个别命令上存在差异，但已做兼容性处理，绝大多数情况下可直接使用原有命令。
+
+根据 GB/T 3102.11—1993《物理科学和技术中使用的数学符号》，公式中物理量的变量符号用斜体，常量符号用正体。具体规范如下：
+
+\begin{enumerate}[kuohao]
+  \item 正文中的数学内容使用 \verb|$…$| 包围，例如 \verb|$A_{italic}$|、\verb|$B_\text{upright}$|、\verb|$C^{中文也支持}$| 编译得到 $A_{italic}$、$B_\text{upright}$、$C^{中文也支持}$\footnote{本模板支持在数学上下标中直接输入中文，无需 \textbackslash text 命令。}。
+  \item 数学常数和特殊函数名使用正体，可通过 \verb|\symup{}| 命令实现。本模板预定义了 \verb|\ee|、\verb|\ii|、\verb|\jj|，分别输出自然底数 $\ee$、虚数单位 $\ii$ 和 $\jj$。小写希腊字母的正体形式通过加 \verb|up| 前缀实现，如 $\uppi = 3.14\dots$。
+  \item 希腊字母：大写字母默认为正体，斜体形式通过加 \verb|var| 前缀实现，例如 \verb|$\Gamma$| 得到 $\Gamma$，\verb|$\varGamma$| 得到 $\varGamma$；小写字母默认为斜体，正体形式通过加 \verb|up| 前缀实现，例如 \verb|$\gamma$| 得到 $\gamma$，\verb|$\upgamma$| 得到 $\upgamma$。
+  \item 微分符号与偏微分符号使用正体，分别用 \verb|\dif| 和 \verb|\partial| 输出 $\dif$ 和 $\partial$。有限增量符号应使用 \verb|\increment| 命令获得 $\increment$（ISO 标准，U+2206），不建议使用 \verb|\Delta| 或 \verb|\upDelta|。
+  \item 特殊集合符号使用粗正体（\verb|\symbfup{}|），如 $x\in\symbfup{R}$；也可使用空心正体（板粗体）\verb|\mathbb{}|，效果为 $\mathbb{R}$。
+  \item 向量、矩阵和张量使用粗斜体（\verb|\symbf{}|），如 $\symbf{x}$、$\symbf{\varSigma}$、$\symbf{T}$。为保持兼容性，传统的 \verb|\bm{}| 命令同样有效，如 $\bm{\varSigma}$、$\bm{x}$。
+  \item 积分符号保持直立形式：\verb|\int_a^b| 输出 $\int_a^b$；多重积分使用 \verb|\iint|、\verb|\iiint|、\verb|\idotsint| 输出 $\iint$、$\iiint$、$\idotsint$；环路积分使用 \verb|\oint|（$\oint$）、\verb|\oiint|（$\oiint$）、\verb|\oiiint|（$\oiiint$）。
+  \item 自然对数使用 $\ln x$，不使用 $\log x$。
+  \item 实部与虚部符号使用罗马体，分别用 \verb|$\Re$| 和 \verb|$\Im$| 输出 $\Re$ 和 $\Im$。
+  \item Nabla 算子使用粗正体，直接用 \verb|$\nabla$| 编译得到 $\nabla$，无需额外命令。
+  \item 小于等于号使用 \verb|$\leqslant$|（$\leqslant$），不使用 \verb|$\leq$|（$\leq$）；大于等于号同理。
+\end{enumerate}

@@ -1,0 +1,302 @@
+% 建议自己在这里检查好：
+% 1. 所有文献的标题是否格式统一
+%    要么全部都是每个单词首字母大写
+%    要么全部都是仅句首首字母大写
+%    总之统一格式,保证美观
+% 2. 需要大写的专有名词别忘了大写
+% 3. 需要斜体的可以使用\emph{}或\textit{}
+
+% 以下三个条目为图书[M]的示例
+
+@book{book_example1,
+  author    = {作者},
+  title     = {书名},
+  edition   = {版次},
+  address   = {出版地},
+  publisher = {出版单位},
+  year      = {2077},
+  pages     = {引文页码}
+} % 参考文献[1]
+
+@book{book_example2,
+  author     = {哈里森 and 沃尔德伦},
+  title      = {经济数学与金融数学},
+  translator = {谢远涛},
+  address    = {北京},
+  publisher  = {中国人民大学出版社},
+  year       = {2012},
+  pages      = {235--236}
+} % 参考文献[2]
+
+@book{book_example3,
+  author    = {北京市政协民族和宗教委员会 and 北京联合大学民族与宗教研究所},
+  title     = {历代王朝与民族宗教},
+  address   = {北京},
+  publisher = {民族出版社},
+  year      = {2012},
+  pages     = {112}
+} % 参考文献[3]
+
+% 以下两个条目为会议录[C]的示例
+
+@proceedings{conference_example1,
+  author    = {作者},
+  title     = {论文集名},
+  address   = {出版地},
+  publisher = {出版单位},
+  year      = {2077},
+  pages     = {起止页码}
+} % 参考文献[5]
+
+@proceedings{conference_example2,
+  author    = {牛志明 and 斯温兰德 and 雷光春},
+  title     = {综合湿地管理国际研讨会论文集},
+  address   = {北京},
+  publisher = {海洋出版社},
+  year      = {2012}
+} % 参考文献[6]
+
+% 以下两个条目为汇编[G]的示例
+
+@collection{collection_example1,
+  author    = {作者},
+  title     = {汇编名},
+  edition   = {版本},
+  address   = {出版地},
+  publisher = {出版社},
+  year      = {2077}
+} % 参考文献[7]
+
+@collection{collection_example2,
+  author    = {新闻出版总署科技发展司 and 新闻出版总署图书出版管理司 and 中国标准出版社},
+  title     = {作者编辑常用标准及规范},
+  edition   = {第二版},
+  address   = {北京},
+  publisher = {中国标准出版社},
+  year      = {2005}
+} % 参考文献[8]
+
+% 以下三个条目为学位论文[D]的示例
+
+@phdthesis{thesis_example1, % 或mastersthesis
+  author  = {作者}, %123
+  title   = {论文题目},
+  address = {保存地},
+  school  = {保存单位},
+  year    = {2077}
+} % 参考文献[9]
+
+@phdthesis{thesis_example23,
+  author  = {CALMS, R B},
+  title   = {Infrared spectroscopic studies on solid oxygen},
+  address = {Berkeley},
+  school  = {Univ. of California},
+  year    = {1965}
+} % 参考文献[10]
+@thesis{thesis_example2,
+  author    = {马欢},
+  title     = {人类活动影响下海河流域典型区水循环变化分析},
+  address   = {北京},
+  publisher = {清华大学},
+  year      = {2011},
+  url       = {http://www.cnki.net/kcms/detail/detail.aspx?dbcode=CDFD&QueryID=.0&CurRec=11&dbname=CDFDLAST2013&filename=1012035905.nh&uid=WEEvREc-wSlJHSldTTGJhYlJRaEhGUXFQWVB6SGZXeisxdmVhV3ZyZkpoUnozeDE1b0paM0NmMjZiQ3p4TUdmcw=},
+  urldate   = {2013-10-14}
+}
+@phdthesis{thesis_example3,
+  author  = {吴云芳},
+  title   = {面向中文信息处理的现代汉语并列结构研究},
+  address = {北京},
+  school  = {北京大学},
+  year    = {2003},
+  url     = {http://thesis.lib.pku.edu.cn/dlib/List.asp?lang=gb&type=Reader&DocGroupID=4&DocID=6328},
+  urldate    = {2013-10-14}
+} % 参考文献[11],官方样式的urldate无法显示,https://github.com/hushidong/biblatex-gb7714-2025/issues/5,本模板已解决
+
+% 以下三个条目为报告[R]的示例
+
+@techreport{report_example1,
+  author      = {报告者},
+  title       = {报告题目},
+  address     = {报告地},
+  institution = {报告会主办单位},
+  year        = {2077}
+} % 参考文献[12]
+
+@techreport{report_example2,
+  author      = {{U.S. Department of Transportation Federal Highway Administration}},
+  title       = {Guidelines for handling excavated acid-producing material: PB91-194001},
+  address     = {Springfield},
+  institution = {U.S. Department of Commerce National Information Service},
+  year        = {1990}
+} % 参考文献[13]
+
+@techreport{report_example3,
+  author  = {中华人民共和国国务院新闻办公室},
+  title   = {国防白皮书: 中国武装力力的多样化运用},
+  date    = {2013-04-16},
+  urldate = {2014-06-11},
+  url     = {http://www.mod.gov.cn/affair/2013-04/16/content_4442839.htm}
+} % 参考文献[14]
+
+% 以下两个条目为专利[P]的示例
+
+@patent{patent_example1,
+  author  = {专利所有者},
+  title   = {专利名称},
+  number  = {专利号},
+  date    = {2003-11-10}
+} % 参考文献[15]
+
+@patent{patent_example2,
+  author  = {张凯军},
+  title   = {轨道火车及高速轨道火车紧急安全制动辅助装置},
+  number  = {201220158825.2},
+  date    = {2012-04-05}
+} % 参考文献[16]
+
+% 以下两个条目为标准[S]的示例
+% 使用book类型配合note域
+% 这样使用的是标准的biblatex写法
+% 可以更好地兼容Zotero等文献管理工具
+
+@book{standard_example1,
+  author    = {标准制定者},
+  title     = {标准名称：标准代号},
+  address   = {出版地},
+  publisher = {出版单位},
+  year      = {2077},
+  pages     = {页码},
+  note      = {standard}
+} % 参考文献[17] - 使用book类型+note域表示标准
+
+@book{standard_example2,
+  author    = {全国信息与文献标准化技术委员会},
+  title     = {文献著录：第4部分\,\,非书资料：GB/T 3792.4—2009},
+  address   = {北京},
+  publisher = {中国标准出版社},
+  year      = {2010},
+  pages     = {3},
+  note      = {standard}
+} % 参考文献[18] - 使用book类型+note域表示标准
+
+% 以下两个条目为丛书析出文献[M]//的示例
+
+@inbook{inbook_example1,
+  author    = {作者},
+  title     = {析出文献题名},
+  editor    = {丛书作者},
+  booktitle = {丛书题名},
+  address   = {出版地},
+  publisher = {出版社},
+  year      = {2077},
+  pages     = {页码}
+} % 参考文献[19]
+
+@inbook{inbook_example2,
+  title     = {周易外传：卷5},
+  editor    = {王夫之},
+  booktitle = {船山全书：第6册},
+  address   = {长沙},
+  publisher = {岳麓书社},
+  year      = {2011},
+  pages     = {1109}
+} % 参考文献[20]
+
+% 以下两个条目为会议集析出文献[M]//的示例
+
+@inproceedings{inconference_example1,
+  author    = {作者},
+  title     = {文章题目},
+  editor    = {会议集编著者},
+  booktitle = {会议集提名：版本项},
+  address   = {会议集出版地},
+  publisher = {出版社},
+  year      = {2077},
+  pages     = {页码}
+} % 参考文献[21]
+
+@inproceedings{inconference_example2,
+  author    = {贾东琴 and 柯平},
+  title     = {面向数字素养的高校图书馆数字服务体系研究},
+  editor    = {中国图书馆学会},
+  booktitle = {中国图书馆学会年会论文集：2011年卷},
+  address   = {北京},
+  publisher = {国家图书馆出版社},
+  year      = {2011},
+  pages     = {45--52}
+} % 参考文献[22]
+
+% 以下三个条目为连续出版物[J]的示例
+
+@periodical{periodical_example1,
+  author       = {主要责任者},
+  title        = {题名},
+  date         = {2013/2025},
+  volume       = {36-40},
+  number       = {1-1},
+  location     = {出版地},
+  institution  = {出版者},
+  url          = {http://www.baidu.com},
+  urldate      = {2025-07-07},
+  doi = {112.w1234r.sss}
+} % 参考文献[23] - 删除了usera域,由样式自动处理
+
+@periodical{periodical_example2,
+  author       = {中华医学会湖北分会},
+  title        = {临床内科杂志},
+  date         = {1984},
+  volume       = {1},
+  number       = {1},
+  location     = {武汉},
+  institution  = {中华医学会湖北分会}
+} % 参考文献[24]
+
+@periodical{periodical_example3,
+  author       = {中国图书馆学会},
+  title        = {图书馆学通讯},
+  date         = {1957/1990},
+  number       = {1-4},
+  location     = {北京},
+  institution  = {北京图书馆}
+} % 参考文献[25]
+
+@article{journal_example1,
+  author  = {作者},
+  title   = {文章题目},
+  journal = {期刊名},
+  year    = {2077},
+  volume  = {卷},
+  number  = {期},
+  pages   = {页码}
+} % 参考文献[26]
+
+@article{journal_example2,
+  author  = {袁训来 and 陈哲 and 肖书海 and others},
+  title   = {蓝田生物群：一个认识多细胞生物起源和早期演化的新窗口},
+  journal = {科学通报},
+  year    = {2012},
+  volume  = {55},
+  number  = {34},
+  pages   = {3219}
+} % 参考文献[27]
+
+% 以下两个条目为报纸[N]的示例
+% 使用article类型配合note域
+
+@article{news_example1,
+  author       = {作者},
+  title        = {文章题目},
+  journaltitle = {报纸名},
+  date         = {2077-07-17},
+  number       = {版次},
+  note         = {newspaper}
+} % 参考文献[29] - 使用article类型+note域表示报纸
+
+@article{news_example2,
+  author       = {丁文详},
+  title        = {数字革命与竞争国际化},
+  journaltitle = {中国青年报},
+  note         = {2000-11-20},
+  number       = {15},
+  note         = {newspaper}
+} % 参考文献[30] - 使用article类型+note域表示报纸

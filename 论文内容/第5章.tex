@@ -1,0 +1,69 @@
+\clearpage
+\section{图表使用说明}
+
+\subsection{图注的使用方法}
+
+在 \verb|\end{figure}| 前使用 \verb|\fignote{}| 命令即可添加图注，示例如下：
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\linewidth]{图/LaTeX排版服务.jpg}
+    \bicaption{闲鱼「薛定谔之花\_」\LaTeX 排版服务}{Thank you for your patronage}
+    \fignote{如有疑问，欢迎闲鱼联系模板作者或致邮\href{mailto:junhaowu_hit@163.com}{\textcolor{blue}{junhaowu\_hit@163.com}}。}
+\end{figure}
+
+图注后的正文文字从此处继续排版，与正文保持一致的行距与缩进格式。
+
+\subsection{续表的使用方法}
+
+跨页表格使用 \verb|longtable| 环境实现，示例如下：
+
+\begin{longtable}{@{}lll@{}}
+    \bicaption{表格标题}{Table Title}\\
+    \toprule
+    列1 & 列2 & 列3 \\
+    \midrule
+    \endfirsthead
+    \bicaption[]{表格标题（续表）}{Table Title (Continued)}\\
+    \toprule
+    列1 & 列2 & 列3 \\
+    \midrule
+    \endhead
+    \midrule
+    \endfoot
+    \bottomrule
+    \endlastfoot
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+    数据1 & 数据2 & 数据3 \\
+\end{longtable}

@@ -1,0 +1,48 @@
+\clearpage
+\section{关键注意事项}
+
+\subsection{章节换页}
+
+每一章正文结束后，建议在 \verb|\section| 之前使用 \verb|\clearpage| 命令强制换页，以确保图表等浮动体不会跨章出现。
+
+\subsection{标题换行命令}
+
+本模板定义了专用的标题换行命令 \verb|\titlebreak|\index{huanhangxingwei@换行行为}，用于在不同排版场景下独立控制标题的换行行为。\verb|\titlebreak| 与 \verb|\\| 的区别如表~\ref{tab:titlebreak} 所示。
+
+\begin{table}[H]
+    \centering
+    \bicaption{标题换行命令在各场景下的行为}{Behavior of title line-break commands in different contexts}
+    \label{tab:titlebreak}
+    \begin{tabular}{@{}llll@{}}
+        \toprule
+        命令 & 封面标题 & 书脊标题 & 页眉右侧 \\ \midrule
+        \verb|\titlebreak| & 换行 & 忽略 & 忽略 \\
+        \verb|\\|           & 换行 & 忽略 & 换行 \\ \bottomrule
+    \end{tabular}
+\end{table}
+
+使用时需注意以下两点：其一，页眉文字不得超过两行，本模板未对三行及以上页眉做适配，超出时排版效果将与 Word 不一致；其二，当标题在封面页因过长而发生自动换行时，自动换行产生的行间距偏窄（刻意为之），必须在适当位置手动添加换行符并指定行距。具体使用案例参见表~\ref{tab:titlebreak-examples}。
+
+\begin{table}[H]
+    \centering
+    \bicaption{标题换行命令使用案例}{Usage examples of title line-break commands}
+    \label{tab:titlebreak-examples}
+    \zihao{-6}
+    \begin{tabular}{@{}p{3cm}p{2.75cm}p{5cm}p{5cm}@{}}
+        \toprule
+        命令写法 & 封面标题 & 书脊（始终不换行） & 页眉 \\ \midrule
+        \verb|\renewcommand{\cntitle}{...|\newline\verb|\titlebreak...}| &
+        \parbox[t]{5cm}{大型企业与地区社会变迁研究\\——以广西为例} &
+        大型企业与地区社会变迁研究——以广西为例 &
+        大型企业与地区社会变迁研究——以广西为例 \\[2em]
+        \verb|\renewcommand{\cntitle}{...|\newline\verb|\\...}| &
+        \parbox[t]{5cm}{大型企业与地区社会变迁研究\\——以广西为例} &
+        大型企业与地区社会变迁研究——以广西为例 &
+        \parbox[t]{5cm}{大型企业与地区社会变迁研究\\——以广西为例} \\[2em]
+        \verb|\renewcommand{\cntitle}{...|\newline\verb|\titlebreak...\\...}| &
+        \parbox[t]{5cm}{大型企业\\与地区社会变迁研究\\——以广西为例} &
+        大型企业与地区社会变迁研究——以广西为例 &
+        \parbox[t]{5cm}{大型企业与地区社会变迁研究\\——以广西为例} \\
+        \bottomrule
+    \end{tabular}
+\end{table}

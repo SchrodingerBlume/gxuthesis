@@ -1,0 +1,53 @@
+\clearpage
+\section{使用 \texttt{biblatex} 处理参考文献}
+
+\subsection{默认依据国家标准 GB/T 7714—2015}
+
+参考文献的著录应符合国家标准GB/T 7714。模板使用 \texttt{biblatex} 宏包的 \texttt{gb7714-2015} 样式，请务必将文献工具设置为 biber，编译链为：Xe\LaTeX-biber-Xe\LaTeX-Xe\LaTeX。
+
+如表\ref{tab:atref}所示，列举了一些可用的 \verb|entrytype|。
+
+\begin{table}[htb]
+    \centering
+    \bicaption{文献类型和标识代码}{Reference Types and Identifier Codes}
+    \label{tab:atref}
+    \begin{tabular}{@{}lll@{}}
+        \toprule
+        \textbf{类型简称} & \textbf{中文含义} & \textbf{\texttt{biblatex-gb7714-2015} 中的 \texttt{entrytype}} \\
+        \midrule
+        {[M]}  & 普通图书           & \texttt{@book}\cite{book_example1,book_example2,book_example3,online_book_example1} \\
+        {[C]}  & 会议录             & \texttt{@proceedings}\cite{conference_example1,conference_example2} \\
+        {[G]}  & 汇编               & \texttt{@collection}\cite{collection_example1,collection_example2} \\
+        {[D]}  & 学位论文           & \texttt{@phdthesis}\cite{thesis_example1,thesis_example2,thesis_example3} \\
+        {[R]}  & 报告               & \texttt{@techreport}\cite{report_example1,report_example2,report_example3} \\
+        {[P]}  & 专利               & \texttt{@patent}\cite{patent_example1,patent_example2} \\
+        {[S]}  & 标准               & \texttt{@standard}\cite{standard_example1,standard_example2} \\
+        \midrule
+        {[M]}  & 丛书析出文献       & \texttt{@inbook}\cite{inbook_example1,inbook_example2} \\
+        {[C]}  & 会议集的析出文献   & \texttt{@inproceedings}\cite{inconference_example1,inconference_example2} \\
+        \midrule
+        {[J]}  & 连续出版物-期刊    & \texttt{@periodical}\cite{periodical_example1,periodical_example2,periodical_example3} \\
+        \midrule
+        {[J]}  & 期刊               & \texttt{@article}\cite{journal_example1,journal_example2,online_journal_example1} \\
+        {[N]}  & 报纸               & \texttt{@newspaper}\cite{news_example1,news_example2,online_news_example1} \\
+        \midrule
+        {[EB]} & 电子公告           & \texttt{@online} \\
+        {[DB]} & 数据库             & \texttt{@database}\cite{dbmt} \\
+        {[CP]} & 计算机程序         & \texttt{@software} \\
+        {[A]}  & 档案               & \texttt{@archive} \\
+        {[CM]} & 舆图               & \texttt{@map} \\
+        {[DS]} & 数据集             & \texttt{@dataset} \\
+        {[Z]}  & 其他文献           & \texttt{@misc} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+正文中如需对引文进行阐述时，应使用\verb|\parencite{}|命令代替\verb|\cite{}|命令，且用法不变，如：文献\parencite{book_example1,book_example2,collection_example1,collection_example2,thesis_example1,thesis_example2}从不同角度阐述了……阅读\href{https://mirrors.tuna.tsinghua.edu.cn/CTAN/macros/latex/contrib/biblatex-contrib/biblatex-gb7714-2015/biblatex-gb7714-2015.pdf}{\textcolor{blue}{官方文档}}以了解更多 biblatex 的 gb7714-2015 样式的使用细节。
+
+\subsection{切换到使用国家标准GB/T 7714—2025}
+
+由于目前 2025 标准已正式实施，且广西大学的补充文件中也提及应遵守 2025 版标准，因此模板也提供了方便的切换接口：在 \verb|\documentclass{gxuthesis}| 传入参数 \verb|[gb7714-2025]| 即可切换。
+
+\subsubsection{关于 \texttt{biblatex-gb7714-2025} 宏包}
+
+本模板附带了 biblatex-gb7714-2025 样式文件，其原因是 \TeX{} Live 当前收录版本滞后于仓库最新发布，而旧版本存在影响正常使用的已知缺陷。\textbf{宏包的著作权归原作者胡振震（hushidong）所有}，本模板未对其作任何修改，仅随包分发以确保用户开箱即用。待 \TeX{} Live 同步更新后，用户可直接删除本模板附带的宏包文件，改用系统版本。

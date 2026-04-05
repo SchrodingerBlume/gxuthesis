@@ -1,0 +1,5 @@
+%% gxuindex.tex — 广西大学学位论文索引
+
+headings_flag 1
+heading_prefix "{\\textbf{"
+heading_suffix "}}\\nopagebreak\n"
