@@ -6,9 +6,15 @@
 
 % ——— 用户接口 ———
 % 标题换行命令
-% \titlebreak  — 在封面换行，在书脊和页眉中忽略（变为空格）
-% \\           — 在封面和页眉换行，在书脊中忽略（变为空格）
-\newcommand{\titlebreak}{\\}
+% \coverbreak     — 仅在封面/扉页换行，其余忽略
+% \titlebreak     — \coverbreak 的别名，保留以兼容旧用法
+% \headerbreak    — 仅在页眉中换行，其余忽略
+% \abstractbreak  — 仅在摘要标题中换行，其余忽略
+% \\              — 除书脊外均换行（封面/扉页/页眉/摘要 都换行）
+\newcommand{\coverbreak}{\\}
+\newcommand{\titlebreak}{\coverbreak}
+\newcommand{\abstractbreak}{}
+\newcommand{\headerbreak}{}
 \providecommand{\degree}{博士} % 博士 / 硕士
 \providecommand{\cntitle}{研究题目} % 中文标题
 \providecommand{\cntitlespine}{\cntitle} % 书脊标题，默认同封面标题
@@ -56,16 +62,26 @@
 \newif\ifgxublind
 \gxublindfalse
 
+% 默认页眉：横线 + 左侧「广西大学X学位论文」+ 右侧「论文标题」
+% 盲审版本（\gxublindtrue）：横线 + 右侧「论文标题」，不显示左侧文字（2026 年新规范）
+% 完全隐藏页眉版本：\gxunoheadertrue 启用，横线、左右文字都不显示
+\newif\ifgxunoheader
+\gxunoheaderfalse
+
 % 书脊默认单列，\gxuspinedoublecoltrue 启用双列
 \newif\ifgxuspinedoublecol
-\gxuspinedoublecolfalse  
+\gxuspinedoublecolfalse
 
 % 默认显示书脊，\gxuspinefalse 不显示书脊
 \newif\ifgxuspine
 \gxuspinetrue
 
+% 书脊单列模式下，默认「字母不旋转」，\gxuspinerotatelettertrue 启用字母旋转
+\newif\ifgxuspinerotateletter
+\gxuspinerotateletterfalse
+
 % —— 封面 ——
-\newcommand{\gxuVertChar}[1]{\hbox{\zihao{3}\bfseries\ifnum\XeTeXcharclass`#1>0\ifnum`#1="2014\leavevmode\unskip\rotatebox{-90}{#1}\else\ifnum`#1="2015\leavevmode\unskip\rotatebox{-90}{#1}\else#1\fi\fi\else\leavevmode\unskip\rotatebox{-90}{#1}\fi}}
+\newcommand{\gxuVertChar}[1]{\hbox{\zihao{3}\bfseries\ifnum\XeTeXcharclass`#1>0\ifnum`#1="2014\leavevmode\unskip\rotatebox{-90}{#1}\else\ifnum`#1="2015\leavevmode\unskip\rotatebox{-90}{#1}\else#1\fi\fi\else\leavevmode\unskip\ifgxuspinerotateletter\rotatebox{-90}{#1}\else\makebox[16pt][c]{#1}\fi\fi}}
 
 \newcommand{\gxuVertCharDouble}[1]{%
   \hbox to \dimexpr16pt\relax{\hss\zihao{3}\bfseries#1\hss}%
@@ -75,6 +91,9 @@
   \begingroup
   \let\\\relax
   \let\titlebreak\relax
+  \let\coverbreak\relax
+  \let\abstractbreak\relax
+  \let\headerbreak\relax
   \newif\ifgxulastdash
   \gxulastdashfalse
   \def\gxuparsevert##1{%
@@ -91,7 +110,7 @@
             \gxulastdashfalse
           \fi\fi
         \else
-          \vskip-8pt
+          \ifgxuspinerotateletter\vskip-8pt\fi
           \gxulastdashfalse
         \fi
         \gxuVertChar{##1}%
@@ -108,6 +127,9 @@
   \begingroup
   \let\\\relax
   \let\titlebreak\relax
+  \let\coverbreak\relax
+  \let\abstractbreak\relax
+  \let\headerbreak\relax
   \setcounter{gxuVTDcount}{0}%
   \def\gxuVTDfirst{}%
   \def\gxuVTDparse##1{%
@@ -184,13 +206,15 @@
      \fi
      \ifgxuprofessional 专业\fi 学位论文};
 
+    % 标题行距：\fontsize 必须放在 \node 之外
+    % 因为 TikZ 内部 \parbox/minipage 启动时
+    % \@parboxrestore 会把 \baselineskip 重置为外层 \normalbaselineskip
+    % 若写在节点内，paragraph builder 实际收到的是外层 strut
+    % 导致自动换行与 \\、\titlebreak 视觉不一致
+    {\fontsize{26bp}{33bp}\selectfont
     \node[anchor=north, text width=17cm, align=flush center] at
-        ([shift={(5pt, 137pt)}]current page.center)
-        {\zihao{1}\textbf{%
-        \setlength{\baselineskip}{17bp}%
-         \let\gxuoldnewline\\%
-         \renewcommand{\\}{\gxuoldnewline[17bp]}%
-         \cntitle}};
+        ([shift={(5pt, 141.8pt)}]current page.center)
+        {\textbf{\cntitle}};}
 
     \node[anchor=center] at
         ([shift={(5pt, -95.5pt)}]current page.center)

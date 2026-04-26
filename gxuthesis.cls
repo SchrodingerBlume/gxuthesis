@@ -20,7 +20,7 @@
 \RequirePackage{fancyhdr}
 \WarningFilter{fancyhdr}{\headheight is too small}
 \RequirePackage{tikz}
-\RequirePackage{ulem}
+\RequirePackage[normalem]{ulem}
 \RequirePackage{setspace}
 \RequirePackage{tocloft}
 \RequirePackage[nottoc]{tocbibind}
@@ -66,16 +66,7 @@
         doi=false,
         url=false,
         gbalign=left,
-        gbpunctwidth=bylan,
     ]{biblatex}
-    \setcounter{gbrefcompress}{3}
-    \def\gbpunctcommacite{\addcomma}
-    \DeclareFieldFormat{title}{#1}
-    \DeclareFieldFormat[article,patent,thesis,unpublished]{title}{#1}
-    \makeatletter
-    \AtBeginDocument{\patchcmd{\abx@macro@title}{\newunitpunct}{}{}{}}{}
-    \makeatother
-    \def\gbpunctdot{\unskip\mbox{．}\allowbreak}
 \else
     \RequirePackage[
         backend=biber,
@@ -86,7 +77,6 @@
         url=false,
         gbalign=left,
     ]{biblatex}
-    \setcounter{gbrefcompress}{3}
 \fi
 
 
@@ -148,6 +138,20 @@
 \else
     \newcommand{\lishu}{\bfseries\heiti}
 \fi
+
+% 页眉用「隶书 + 西文同隶书」：在 \lishu 基础上把主字体也切到 SimLi（仅页眉使用）
+% 找不到 SimLi 时退化为 \lishu（西文保持 TNR）
+\IfFontExistsTF{SimLi}{%
+    \newfontfamily{\gxulishuLatinFont}{SimLi}%
+    \newcommand{\gxulishufull}{\lishu\gxulishuLatinFont}%
+}{%
+    \IfFileExists{字体/simli.ttf}{%
+        \newfontfamily{\gxulishuLatinFont}{simli.ttf}[Path=字体/]%
+        \newcommand{\gxulishufull}{\lishu\gxulishuLatinFont}%
+    }{%
+        \newcommand{\gxulishufull}{\lishu}%
+    }%
+}
 
 \setCJKfamilyfont{zhfs}{FangSong}
 \providecommand{\fangsong}{}
@@ -389,20 +393,20 @@
 % 根据标题行数自动调整版面，支持一行/两行，再多不行了
 \newlength{\gxuheadertitleheight} % 页眉高度测量
 \newcommand{\setheadertitle}[1]{%
-    \ifgxublind
+    \ifgxunoheader
         \newgeometry{
             left=2.8cm, right=2.5cm, top=2.8cm, bottom=2.695cm,
             includefoot, headsep=7.75pt, footskip=.495cm}%
         \renewcommand{\headrule}{%
             \vspace{4pt}\hrule width\headwidth height\headrulewidth\vspace{-4pt}}%
         \fancyhead[R]{}%
-        \renewcommand{\headrulewidth}{0pt}% 盲审不要横线
+        \renewcommand{\headrulewidth}{0pt}% 完全不显示页眉：去除横线
     \else
         \begingroup
-        \def\titlebreak{}%
+        \def\titlebreak{}\def\coverbreak{}\def\abstractbreak{}\let\headerbreak\\% 页眉：cover/abstract 忽略，header 换行
         \settototalheight{\gxuheadertitleheight}{%
             \parbox{\dimexpr\textwidth-4cm}{%
-                \lishu\fontsize{12bp}{19.5pt}\selectfont\ziju{.05}#1}}%
+                \gxulishufull\fontsize{12bp}{19.5pt}\selectfont\ziju{.05}#1}}%
         \ifdim\gxuheadertitleheight>20pt
             \endgroup
             \newgeometry{
@@ -419,8 +423,8 @@
                 \vspace{4pt}\hrule width\headwidth height\headrulewidth\vspace{-4pt}}%
         \fi
         \fancyhead[R]{\vtop{%
-            \def\titlebreak{}%
-            \lishu\fontsize{12bp}{19.5pt}\selectfont\ziju{.05}#1}}%
+            \def\titlebreak{}\def\coverbreak{}\def\abstractbreak{}\let\headerbreak\\% 页眉：cover/abstract 忽略，header 换行
+            \gxulishufull\fontsize{12bp}{19.5pt}\selectfont\ziju{.05}#1}}%
     \fi
 }
 
@@ -447,8 +451,11 @@
 \newlength{\sectiontitleheight}
 \newcommand{\cnabstractsection}[1]{%
     \vspace*{-9.5pt}\vspace*{-11.5pt}%
-    {\ctexset{section/format={\heiti\bfseries\centering\zihao{3}\linespread{2.165}\selectfont}}%
-    \def\titlebreak{\\}%
+    % \centering 会把 \\ 重新绑成 \@centercr（换行）。摘要里 \\ 也需要换行
+    % （新规：\\ 除书脊外均换行），所以保留 \centering 给 \\ 的绑定，不再覆盖。
+    % \abstractbreak 通过 \let 与 \\ 共享 \@centercr，仅靠全局空定义将自身限制在摘要。
+    % \coverbreak / \titlebreak 用 \def...{\ignorespaces} 化，吞自身 + 紧随空格。
+    {\ctexset{section/format={\heiti\bfseries\centering\let\abstractbreak\\\def\titlebreak{\ignorespaces}\def\coverbreak{\ignorespaces}\zihao{3}\linespread{2.165}\selectfont}}%
     \section*{#1}}%
 }
 
@@ -510,8 +517,9 @@
 
     % —— 英文摘要 ——
     \vspace*{-18.1pt}
-    {\ctexset{section/format={\heiti\bfseries\centering\zihao{3}\linespread{2.0165}\selectfont}}
-    \def\titlebreak{\\}%
+    % 处理同 \cnabstractsection（见上）：\\ 保留 \centering 的 \@centercr 绑定（换行），
+    % \abstractbreak \let 到 \\，\coverbreak/\titlebreak \ignorespaces 化。
+    {\ctexset{section/format={\heiti\bfseries\centering\let\abstractbreak\\\def\titlebreak{\ignorespaces}\def\coverbreak{\ignorespaces}\zihao{3}\linespread{2.0165}\selectfont}}
     \section*{#2}}
     \vspace*{2.75pt}
     \begin{enabstract}%
@@ -536,6 +544,13 @@
     \restoregeometry
 }
 
+% —— 推荐用法：\gxufrontmatter{中文摘要文件}{英文摘要文件} ——
+% 自动用 \cntitle / \entitle 当作摘要节标题，无需用户手动重复传入。
+% 保留 \makefrontmatter 4 参数版本，兼容旧文件。
+\newcommand{\gxufrontmatter}[2]{%
+    \makefrontmatter{\cntitle}{\entitle}{#1}{#2}%
+}
+
 \newcommand{\gxulistofabbr}{%
     \section*{缩略语清单}%
     \addcontentsline{toc}{section}{缩略语清单}%
@@ -554,20 +569,22 @@
 
 
 % —— 正文部分 —— 改页眉
-\newcommand{\startmainmatter}{%
+\newcommand{\gxumainmatter}{%
     \newpage
     \setcounter{page}{1}
     \pagenumbering{arabic}
     \pagestyle{fancy}
     \fancyhf{}
-    \ifgxublind
+    \ifgxunoheader
         \fancyhead[L]{}%
+    \else\ifgxublind
+        \fancyhead[L]{}% 盲审：隐藏左侧文字，保留右侧标题与横线
     \else
-        \fancyhead[L]{\vtop{\lishu\fontsize{12bp}{19.5pt}\selectfont 广西大学\degree 学位论文}}%
-    \fi
+        \fancyhead[L]{\vtop{\gxulishufull\fontsize{12bp}{19.5pt}\selectfont 广西大学\degree 学位论文}}%
+    \fi\fi
     \setheadertitle{\cntitle}
     \fancyfoot[C]{\zihao{-5}\thepage}
-    \ifgxublind
+    \ifgxunoheader
         \renewcommand{\headrulewidth}{0pt}%
     \else
         \renewcommand{\headrulewidth}{0.5pt}%
@@ -579,6 +596,7 @@
     \renewcommand{\thefigure}{\thesection-\arabic{figure}}
     \renewcommand{\theequation}{\thesection-\arabic{equation}}
 }
+\let\startmainmatter\gxumainmatter % 旧名别名，兼容旧文件
 
 % —— 列表 ——
 \RequirePackage{enumitem}
