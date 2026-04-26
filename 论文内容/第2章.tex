@@ -7,42 +7,24 @@
 
 \subsection{标题换行命令}
 
-本模板定义了专用的标题换行命令 \verb|\titlebreak|\index{huanhangxingwei@换行行为}，用于在不同排版场景下独立控制标题的换行行为。\verb|\titlebreak| 与 \verb|\\| 的区别如表~\ref{tab:titlebreak} 所示。
+本模板定义了若干专用的标题换行命令\index{huanhangxingwei@换行行为}，用于在不同排版场景下独立控制标题的换行行为。各命令在不同场景下的行为如表~\ref{tab:titlebreak} 所示。
 
 \begin{table}[H]
     \centering
     \bicaption{标题换行命令在各场景下的行为}{Behavior of title line-break commands in different contexts}
     \label{tab:titlebreak}
-    \begin{tabular}{@{}llll@{}}
+    \begin{tabular}{@{}lllll@{}}
         \toprule
-        命令 & 封面标题 & 书脊标题 & 页眉右侧 \\ \midrule
-        \verb|\titlebreak| & 换行 & 忽略 & 忽略 \\
-        \verb|\\|           & 换行 & 忽略 & 换行 \\ \bottomrule
+        命令 & 封面 / 扉页 & 书脊 & 页眉右侧 & 摘要 \\ \midrule
+        \verb|\coverbreak|    & 换行 & 忽略 & 忽略 & 忽略 \\
+        \verb|\headerbreak|   & 忽略 & 忽略 & 换行 & 忽略 \\
+        \verb|\abstractbreak| & 忽略 & 忽略 & 忽略 & 换行 \\
+        \verb|\\|             & 换行 & 忽略 & 换行 & 换行 \\ \bottomrule
     \end{tabular}
 \end{table}
 
-使用时需注意以下两点：其一，页眉文字不得超过两行，本模板未对三行及以上页眉做适配，超出时排版效果将与 Word 不一致；其二，当标题在封面页因过长而发生自动换行时，自动换行产生的行间距偏窄（刻意为之），必须在适当位置手动添加换行符并指定行距。具体使用案例参见表~\ref{tab:titlebreak-examples}。
+简而言之：\verb|\coverbreak| 仅在封面/扉页换行；\verb|\headerbreak| 仅在页眉右侧换行；\verb|\abstractbreak| 仅在摘要章节标题中换行；\verb|\\| 除书脊外均换行；书脊对任何换行符均忽略。
 
-\begin{table}[H]
-    \centering
-    \bicaption{标题换行命令使用案例}{Usage examples of title line-break commands}
-    \label{tab:titlebreak-examples}
-    \zihao{-6}
-    \begin{tabular}{@{}p{3cm}p{2.75cm}p{5cm}p{5cm}@{}}
-        \toprule
-        命令写法 & 封面标题 & 书脊（始终不换行） & 页眉 \\ \midrule
-        \verb|\renewcommand{\cntitle}{...|\newline\verb|\titlebreak...}| &
-        \parbox[t]{5cm}{大型企业与地区社会变迁研究\\——以广西为例} &
-        大型企业与地区社会变迁研究——以广西为例 &
-        大型企业与地区社会变迁研究——以广西为例 \\[2em]
-        \verb|\renewcommand{\cntitle}{...|\newline\verb|\\...}| &
-        \parbox[t]{5cm}{大型企业与地区社会变迁研究\\——以广西为例} &
-        大型企业与地区社会变迁研究——以广西为例 &
-        \parbox[t]{5cm}{大型企业与地区社会变迁研究\\——以广西为例} \\[2em]
-        \verb|\renewcommand{\cntitle}{...|\newline\verb|\titlebreak...\\...}| &
-        \parbox[t]{5cm}{大型企业\\与地区社会变迁研究\\——以广西为例} &
-        大型企业与地区社会变迁研究——以广西为例 &
-        \parbox[t]{5cm}{大型企业与地区社会变迁研究\\——以广西为例} \\
-        \bottomrule
-    \end{tabular}
-\end{table}
+使用时需注意：页眉文字不得超过两行，本模板未对三行及以上页眉做适配，超出时排版效果将与 Word 不一致。
+
+\textbf{兼容性提示：} 旧版模板使用的 \verb|\titlebreak| 命令已保留为 \verb|\coverbreak| 的别名，原有论文文件无需修改也能正常编译。新文件建议直接使用 \verb|\coverbreak| 命名，语义更清晰。
